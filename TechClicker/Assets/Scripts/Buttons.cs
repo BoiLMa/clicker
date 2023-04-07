@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
     //This script manages all the code related to the buttons
 
-    public GameObject Player;
+    [SerializeField] private PlayerVariables playerVariables;
     public static int MoneyIncrement = 1;
     public TMP_Text TotalMoneyCounter;
     public List<GameObject> Upgrades = new List<GameObject>();
@@ -23,21 +22,28 @@ public class Buttons : MonoBehaviour
 
     private void Update()
     {
-        TotalMoneyCounter.text = Player.GetComponent<PlayerVariables>().TotalMoney.ToString() + " R";
+        TotalMoneyCounter.text = playerVariables.TotalMoney.ToString() + " $ Inkomsten";
     }
-    public void MainButton()
+
+    public void GainMoney()
     {
-        Player.GetComponent<PlayerVariables>().TotalMoney += MoneyIncrement;
+        playerVariables.TotalMoney += MoneyIncrement;
     }
-    //ik weet niet hoe je dit dynamisch zou moeten maken
-    //de bedoeling is dat de er word gekeken welke knop er word in gedrukt en dan de 
-    //volgende knop setactive op true zet.
-    /*public void GetItem()
+    //geen idee wat je wou doen maar je kan er een list voor gebruiken
+
+    public void GetItem(Item _ItemType)
     {
-        ReturnButton(gameObject.GetComponent<Button>());
+        //hier zet je de volgende op true
+        for (int i = 0; i < Upgrades.Count; i++)
+		{
+            if (Upgrades[i] == _ItemType.gameObject)
+			{
+                Upgrades[i + 1].SetActive(true);
+			}
+		}
+
+        //en hier increased hij het geld enzo
+        playerVariables.TotalMoney -= _ItemType.Price;
+        MoneyIncrement += _ItemType.IncreasementRate;
     }
-    public Button ReturnButton(Button _clickedButton)
-    {
-        return _clickedButton;
-    }*/
 }
