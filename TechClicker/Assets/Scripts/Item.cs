@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item
 {
-    Sprite sprite;
-    int price;
-    string description;
+    public Sprite ItemSprite;
+    public int Price;
+    public string Description;
 }
