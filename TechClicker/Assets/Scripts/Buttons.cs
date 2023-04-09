@@ -39,6 +39,7 @@ public class Buttons : MonoBehaviour
             if (Upgrades[i] == _ItemType.gameObject)
 			{
                 Upgrades[i + 1].SetActive(true);
+                Upgrades[i].GetComponent<Item>().Purchased = true;
 			}
 		}
 

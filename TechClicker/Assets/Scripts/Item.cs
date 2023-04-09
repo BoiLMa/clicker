@@ -9,5 +9,5 @@ public class Item : MonoBehaviour
     public int Price;
     public string Description;
     public int IncreasementRate;
-
+    public bool Purchased;
 }
