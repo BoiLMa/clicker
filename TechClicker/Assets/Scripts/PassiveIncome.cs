@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PassiveIncome : MonoBehaviour
 {
-    public GameObject Player; 
+    [SerializeField] private PlayerVariables playerVariables;
     List<Item> Items = new List<Item>();
-    private PlayerVariables playerVariables;
     private float nextIncrease = 2f;
     private float cooldown = 2f;
+
     void Update()
     {
         if(Time.time > nextIncrease)
@@ -20,7 +20,7 @@ public class PassiveIncome : MonoBehaviour
             {
                 if (i.Purchased)
                 {
-                    Player.GetComponent<PlayerVariables>().TotalMoney += i.IncreasementRate;
+                    playerVariables.TotalMoney += i.IncreasementRate;
                     Debug.Log("money added");
                 }
             }

@@ -33,18 +33,21 @@ public class Buttons : MonoBehaviour
 
     public void GetItem(Item _ItemType)
     {
-        //hier zet je de volgende op true
-        for (int i = 0; i < Upgrades.Count; i++)
-		{
-            if (Upgrades[i] == _ItemType.gameObject)
-			{
-                Upgrades[i + 1].SetActive(true);
-                Upgrades[i].GetComponent<Item>().Purchased = true;
-			}
-		}
+        if (_ItemType.GetComponent<Item>().Price <= playerVariables.TotalMoney)
+        {
+            //hier zet je de volgende op true
+            for (int i = 0; i < Upgrades.Count; i++)
+            {
+                if (Upgrades[i] == _ItemType.gameObject)
+                {
+                    Upgrades[i + 1].SetActive(true);
+                    Upgrades[i].GetComponent<Item>().Purchased = true;
+                }
+            }
 
-        //en hier increased hij het geld enzo
-        playerVariables.TotalMoney -= _ItemType.Price;
-        MoneyIncrement += _ItemType.IncreasementRate;
+            //en hier increased hij het geld enzo
+            playerVariables.TotalMoney -= _ItemType.Price;
+            MoneyIncrement += _ItemType.IncreasementRate;
+        }
     }
 }

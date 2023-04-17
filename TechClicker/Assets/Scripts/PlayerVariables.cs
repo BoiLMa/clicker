@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerVariables : MonoBehaviour
+[CreateAssetMenu(fileName = "Data", menuName = "Player")]
+public class PlayerVariables : ScriptableObject
 {
     public int TotalMoney;
 }
